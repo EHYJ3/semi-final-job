@@ -1,7 +1,7 @@
 package com.javalab.board.vo;
 
-
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,6 +29,9 @@ public class JobPostVo {
 	private String homePage; // 기업홉페이지
 	private Timestamp created; // 작성일자
 	private int hitNO; // 조회수
+	private String function; // 기능 또는 직무
+	private String job; // 직종 
+	private String location; // 근무지 위치
 
 	public JobPostVo(String jobPostId, String title, String content) {
 		this.jobPostId = jobPostId;
@@ -36,4 +39,11 @@ public class JobPostVo {
 		this.content = content;
 	}
 
+	public String getEndDate() {
+		return endDate != null ? new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(endDate) : null;
+	}
+
+	public String getCreated() {
+		return created != null ? new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(created) : null;
+	}
 }

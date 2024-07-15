@@ -72,7 +72,7 @@ public class BoardControllerTest {
 	// get은 static import를 한다. 왜? get이라는 메소드를 사용하기 위해서는
 	// static import를 해야 한다.
 	// static import는 클래스 이름을 생략하고 메소드를 사용할 수 있게 해준다.
-	@Test @Ignore
+	@Test //@Ignore
 	   public void testGetBoard() throws Exception{
 	      // given : 테스트를 위한 전제 조건을 준비 또는 데이터를 준비하는 작업.  
 	      //          여기서는 service.getBoard(1) 호출이 boardVo 객체를 반환하도록 설정.

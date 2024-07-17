@@ -372,7 +372,7 @@ footer .sns i {
             </div>
         </div>
         
-        <!-- 새로운 배너 추가 -->
+        <!-- 새로운 배너 추가 추가-->
   <div class="banner">
     <a href="https://recruit.navercloudcorp.com/" target="_blank" class="banner-link">
         <img src="/resources/image/naver.jpg" alt="Banner Image" class="banner-img">

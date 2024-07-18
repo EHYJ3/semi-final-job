@@ -79,17 +79,6 @@ public class JobPostController {
 	}
 
 	@PostMapping("/create")
-<<<<<<< HEAD
-	public String createJobPost(@ModelAttribute("jobPost") JobPostVo jobPost, HttpSession session) {
-		log.info("JobPostController createJobPost");
-		JobSeekerVo memberVo = (JobSeekerVo) session.getAttribute("memberVo");
-		if (memberVo == null) {
-			return "redirect:/login";
-		}
-		jobPost.setCompId(memberVo.getJobSeekerId()); // 기업 ID 설정
-		jobPostService.insertJobPost(jobPost);
-		return "redirect:/jobPost/list";
-=======
 	public String createJobPost(@ModelAttribute("jobPost") JobPostVo jobPost, BindingResult bindingResult,
 	        @RequestParam("file") MultipartFile file, HttpSession session,
 	        RedirectAttributes redirectAttributes, HttpServletRequest request) {
@@ -150,24 +139,10 @@ public class JobPostController {
 	        redirectAttributes.addFlashAttribute("error", "채용 공고 등록 중 오류가 발생했습니다: " + e.getMessage());
 	        return "jobPost/form";
 	    }
->>>>>>> branch 'master' of https://github.com/EHYJ3/semi-final-job.git
 	}
 
 	@GetMapping("/edit/{id}")
-<<<<<<< HEAD
-	public String editJobPostForm(@PathVariable("id") String jobPostId, Model model, HttpSession session) {
-		log.info("JobPostController editJobPostForm: id = {}", jobPostId);
-		JobSeekerVo memberVo = (JobSeekerVo) session.getAttribute("memberVo");
-		if (memberVo == null) {
-			return "redirect:/login";
-		}
-		JobPostVo jobPost = jobPostService.getJobPostById(jobPostId);
-		if (!jobPost.getCompId().equals(memberVo.getJobSeekerId())) {
-			return "error/403"; // 권한 없음
-		}
-		model.addAttribute("jobPost", jobPost);
-		return "jobPost/form";
-=======
+
 	public String editJobPostForm(@PathVariable("id") String jobPostId, Model model) {
 	    log.info("JobPostController editJobPostForm: id = {}", jobPostId);
 	    
@@ -179,52 +154,23 @@ public class JobPostController {
 	    
 	    model.addAttribute("jobPost", jobPost);
 	    return "jobPost/update";
->>>>>>> branch 'master' of https://github.com/EHYJ3/semi-final-job.git
 	}
 
 	@PostMapping("/update")
-<<<<<<< HEAD
-	public String updateJobPost(@ModelAttribute("jobPost") JobPostVo jobPost, HttpSession session) {
-		log.info("JobPostController updateJobPost: id = {}", jobPost.getJobPostId());
-		JobSeekerVo memberVo = (JobSeekerVo) session.getAttribute("memberVo");
-		if (memberVo == null) {
-			return "redirect:/login";
-		}
-		if (!jobPost.getCompId().equals(memberVo.getJobSeekerId())) {
-			return "error/403"; // 권한 없음
-		}
-		jobPostService.updateJobPost(jobPost);
-		return "redirect:/jobPost/list";
-=======
+
 	public String updateJobPost(@ModelAttribute("jobPost") JobPostVo jobPost) {
 	    log.info("JobPostController updateJobPost: id = {}", jobPost.getJobPostId());
 	    
 	    jobPostService.updateJobPost(jobPost);
 	    return "redirect:/jobPost/list";
->>>>>>> branch 'master' of https://github.com/EHYJ3/semi-final-job.git
 	}
 
 	@PostMapping("/delete")
-<<<<<<< HEAD
-	public String deleteJobPost(@RequestParam("id") String jobPostId, HttpSession session) {
-		log.info("JobPostController deleteJobPost: id = {}", jobPostId);
-		JobSeekerVo memberVo = (JobSeekerVo) session.getAttribute("memberVo");
-		if (memberVo == null) {
-			return "redirect:/login";
-		}
-		JobPostVo jobPost = jobPostService.getJobPostById(jobPostId);
-		if (!jobPost.getCompId().equals(memberVo.getJobSeekerId())) {
-			return "error/403"; // 권한 없음
-		}
-		jobPostService.deleteJobPost(jobPostId);
-		return "redirect:/jobPost/list";
-=======
 	@ResponseBody
 	public String deleteJobPost(@RequestParam("id") String jobPostId) {
 	    log.info("JobPostController deleteJobPost: id = {}", jobPostId);
 	    jobPostService.deleteJobPost(jobPostId);
 	    return "success";
->>>>>>> branch 'master' of https://github.com/EHYJ3/semi-final-job.git
 	}
 
 
@@ -246,16 +192,9 @@ public class JobPostController {
 			String title = jobPostService.getJobPostTitleByJobPostId(jobPost.getJobPostId());
 			jobPost.setTitle(title); // JobPostVo 객체에 제목 설정
 		}
-<<<<<<< HEAD
-		jobPostService.incrementHitCount(jobPostId);
-		// 여기에 스크랩 저장 로직 추가
-		return "redirect:/jobPost/detail/" + jobPostId;
-=======
-
 		// 모델에 스크랩 목록을 추가하여 JSP로 전달합니다.
 		model.addAttribute("scrapList", scrapList);
 
 		return "board/scrapList"; // scrapList.jsp로 포워딩
->>>>>>> branch 'master' of https://github.com/EHYJ3/semi-final-job.git
 	}
 }

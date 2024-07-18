@@ -142,6 +142,7 @@ public class JobPostController {
 	}
 
 	@GetMapping("/edit/{id}")
+
 	public String editJobPostForm(@PathVariable("id") String jobPostId, Model model) {
 	    log.info("JobPostController editJobPostForm: id = {}", jobPostId);
 	    
@@ -156,6 +157,7 @@ public class JobPostController {
 	}
 
 	@PostMapping("/update")
+
 	public String updateJobPost(@ModelAttribute("jobPost") JobPostVo jobPost) {
 	    log.info("JobPostController updateJobPost: id = {}", jobPost.getJobPostId());
 	    
@@ -190,7 +192,6 @@ public class JobPostController {
 			String title = jobPostService.getJobPostTitleByJobPostId(jobPost.getJobPostId());
 			jobPost.setTitle(title); // JobPostVo 객체에 제목 설정
 		}
-
 		// 모델에 스크랩 목록을 추가하여 JSP로 전달합니다.
 		model.addAttribute("scrapList", scrapList);
 

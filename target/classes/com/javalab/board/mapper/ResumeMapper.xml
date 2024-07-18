@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javalab.board.mapper.ResumeMapperInterface">
+
+    <select id="getAllResumes" resultType="com.javalab.board.vo.ResumeVo">
+        SELECT * FROM RESUME
+    </select>
+
+       <insert id="insertResume" parameterType="com.javalab.board.vo.ResumeVo">
+        INSERT INTO RESUME (
+            RESUME_ID,
+            JOBSEEKER_ID,
+            TITLE,
+            CONTENT,
+            EDUCATION,
+            EXPERIENCE,
+            LINK,
+            HIT_NO,
+            FILE_NAME,
+            FILE_PATH
+        )
+        VALUES (
+            RESUME_ID_SEQ.NEXTVAL, <!-- 시퀀스 RESUME_ID_SEQ를 사용하여 번호를 자동 증가 -->
+            #{jobSeekerId},
+            #{title},
+            #{content},
+            #{education},
+            #{experience},
+            #{link},
+            #{hitNo},
+            #{fileName},
+            #{filePath}
+        )
+    </insert>
+    
+    <select id="selectResumeById" resultType="com.javalab.board.vo.ResumeVo">
+        SELECT * FROM RESUME WHERE RESUME_ID = #{resumeId}        
+        
+    </select>
+     
+    <update id="updateResume" parameterType="com.javalab.board.vo.ResumeVo">
+         UPDATE RESUME
+        SET title = #{title},
+            education = #{education},
+            experience = #{experience},
+            link = #{link},
+            content = #{content}
+        WHERE RESUME_ID = #{resumeId}
+</update>
+    
+
+    
+    
+    
+ 
+    <delete id="deleteResume">
+        DELETE FROM RESUME WHERE RESUME_ID = #{resumeId}
+    </delete>
+</mapper>
